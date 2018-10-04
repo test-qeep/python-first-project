@@ -2,12 +2,6 @@
 - hosts: all
   become: yes
   tasks:
-    - name: Install Python 3.6
-      apt:
-        name: python3.6
-        state: present
-        update_cache: yes
-
     - name: Add key for jonathonf PPA
       apt_key:
         keyserver: keyserver.ubuntu.com
@@ -18,6 +12,12 @@
       apt_repository:
         repo: deb http://ppa.launchpad.net/jonathonf/python-3.6/ubuntu xenial main
         state: present
+
+    - name: Install Python 3.6
+      apt:
+        name: python3.6
+        state: present
+        update_cache: yes
 
     - name: Install pip3
       apt:
