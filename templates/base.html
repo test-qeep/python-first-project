@@ -7,7 +7,13 @@
 </head>
 <body>
 <section id="header">
-    {% include 'links.html' %}
+    <ul class="navigation">
+        {% for title, link in links.items() %}
+            <li>
+                <a href="{{ link }}">{{ title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
 </section>
 <section id="content">
     {% block content %}
