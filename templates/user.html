@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>User profile</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-</head>
-<body>
-{% if username %}
-    <h1>Hello {{ username }}!</h1>
-{% else %}
-    <h1>Hello World!</h1>
-{% endif %}
-{% include 'links.html' %}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}User profile{% endblock %}
+
+{% block content %}
+    {% if username %}
+        <h1>Hello {{ username }}!</h1>
+    {% else %}
+        <h1>Hello World!</h1>
+    {% endif %}
+{% endblock %}
