@@ -7,27 +7,34 @@
 {% endblock %}
 
 {% block content %}
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="1000">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-            <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-            <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
+            {% for slide in slides %}
+                <li data-target="#myCarousel"
+                    data-slide-to="{{ loop.index0 }}"
+                    class="{% if loop.first %}active{% endif %}"></li>
+            {% endfor %}
         </ol>
         <div class="carousel-inner">
             {% set class = '' %}
-            {% for image in images %}
+            {% for slide in slides %}
                 {% if loop.first %}
                     {% set class = 'active' %}
                 {% endif %}
                 <div class="carousel-item {{ class }}">
-                    <img src="{{ image.src }}"
-                         alt="{{ image.title }}">
+                    <img src="{{ slide.image_src }}"
+                         alt="{{ slide.image_title }}">
                     <div class="container">
                         <div class="carousel-caption text-left">
-                            <h1>Example headline.</h1>
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                                gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                            <h1>{{ slide.heading }}</h1>
+                            <p>{{ slide.subheading }}</p>
+                            <p>
+                                <a class="btn btn-lg btn-primary"
+                                   href="#"
+                                   role="button">
+                                    Запишись уже сегодня
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -41,5 +48,22 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+    </div>
+
+    <div class="card-deck">
+        {% for product in slides %}
+            <div class="card">
+                <img class="card-img-top"
+                     src="{{ product.image_src }}"
+                     alt="{{ product.image_title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.heading }}</h5>
+                    <p class="card-text">{{ product.subheading }}</p>
+                    <p class="card-text">
+                        <small class="text-muted">Запись окончена</small>
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
