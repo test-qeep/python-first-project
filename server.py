@@ -33,7 +33,17 @@ def generate_links():
 @app.route('/')
 def index():
     links = generate_links()
-    return render_template('index.html', links=links)
+    images = [
+        {
+            'src': 'https://bipbap.ru/wp-content/uploads/2017/04/0_7c779_5df17311_orig.jpg',
+            'title': 'Image title',
+        },
+        {
+            'src': 'https://bipbap.ru/wp-content/uploads/2017/04/3-8.jpg',
+            'title': 'Image 2 title',
+        }
+    ]
+    return render_template('index.html', links=links, images=images)
 
 
 @app.route('/user/')
