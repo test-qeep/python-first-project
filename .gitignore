@@ -2,3 +2,4 @@
 .vagrant/
 Vagrantfile
 ubuntu*.log
+!.idea/dataSources.xml
