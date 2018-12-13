@@ -30,9 +30,9 @@
                             <p>{{ slide.subheading }}</p>
                             <p>
                                 <a class="btn btn-lg btn-primary"
-                                   href="#"
+                                   href="{{ url_for('category_page', category_id=slide.category_id) }}"
                                    role="button">
-                                    Запишись уже сегодня
+                                    Перейти в категорию
                                 </a>
                             </p>
                         </div>
@@ -60,7 +60,12 @@
                     <h5 class="card-title">{{ product.heading }}</h5>
                     <p class="card-text">{{ product.subheading }}</p>
                     <p class="card-text">
-                        <small class="text-muted">Запись окончена</small>
+                        <small class="text-bold">
+                            <a href="{{ url_for('category_page',
+                                        category_id=product.category_id) }}">
+                                Перейти в категорию
+                            </a>
+                        </small>
                     </p>
                 </div>
             </div>

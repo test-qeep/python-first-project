@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}{{ category.title }}{% endblock %}
+
+{% block content %}
+    <div class="card-deck">
+        {% for product in products %}
+            <div class="card">
+                <img class="card-img-top"
+                     src="{{ product.image_url }}"
+                     alt="{{ product.image_title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <p class="card-text">
+                        {% if product.price %}
+                            <small class="text-bold">{{ product.price }} р.</small>
+                        {% else %}
+                            <small class="text-muted">Нет в наличии</small>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
