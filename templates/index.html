@@ -23,9 +23,10 @@
                 {% endif %}
                 <div class="carousel-item {{ class }}">
                     <img src="{{ slide.image_src }}"
-                         alt="{{ slide.image_title }}">
+                         alt="{{ slide.image_title }}"
+                         class="center-cropped">
                     <div class="container">
-                        <div class="carousel-caption text-left">
+                        <div class="carousel-caption text-left text-shadow">
                             <h1>{{ slide.heading }}</h1>
                             <p>{{ slide.subheading }}</p>
                             <p>

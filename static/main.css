@@ -9,3 +9,12 @@ ul.navigation {
     background-color: green;
     margin-right: 5px;
 }
+
+.center-cropped {
+    object-fit: cover;
+    object-position: center;
+}
+
+.text-shadow {
+    text-shadow: 0 0 1px black;
+}
