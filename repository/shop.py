@@ -53,7 +53,7 @@ def find_products_by_category(category_id):
             i.title AS image_title,
             i.url AS image_url
         FROM product p
-        LEFT JOIN image i ON product.id = i.product_id
+        LEFT JOIN image i ON p.id = i.product_id
         WHERE category_id = %s
         '''
         cursor.execute(sql, (category_id,))

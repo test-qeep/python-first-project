@@ -15,7 +15,7 @@
 <body>
 
 <section id="header">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
         <a class="navbar-brand" href="{{ url_for('index') }}">Index</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
                 aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,8 +34,10 @@
     </nav>
 </section>
 <section id="content">
+<div class="container-fluid">
     {% block content %}
     {% endblock %}
+</div>
 </section>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
