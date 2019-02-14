@@ -1,18 +1,6 @@
-ul.navigation {
-    display: block;
-}
-
-.navigation li {
-    display: block;
-    float: left;
-    padding: 5px;
-    background-color: green;
-    margin-right: 5px;
-}
-
 .center-cropped {
     object-fit: cover;
-    object-position: center;
+    object-position: top;
 }
 
 .text-shadow {
