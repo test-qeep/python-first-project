@@ -43,6 +43,10 @@
         git config --global user.name "My Name"
         git config --global user.email "email@example.com"
         
+1. Настройка поведения для `git push`:
+
+        git config --global push.default simple
+        
 1. Настройка SSH-ключа для доступа к удаленным репозиториям
 
 		ssh-keygen -t rsa -b 4096 -C "email@example.com"
