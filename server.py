@@ -1,3 +1,4 @@
+#!/home/vagrant/venv/bin/python
 from flask import Flask, url_for, render_template
 
 from repository import shop
@@ -79,8 +80,11 @@ def category_page(category_id):
 
 @app.route('/cart')
 def cart():
+    links = generate_links()
+
     return render_template(
-        'cart.html'
+        'cart.html',
+        links=links
     )
 
 
