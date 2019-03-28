@@ -1,25 +1,32 @@
-const decrement = a => parseInt(a) ? a - 1 : 0
-const increment = a => parseInt(a) + 1
+const increment = (cart, idPosition) => {
+    cart.positions[idPosition].amount += 1
+    render(cart)
+}
+const decrement = (cart, idPosition) => {
+    cart.positions[idPosition].amount && (cart.positions[idPosition].amount -= 1)
+    render(cart)
+}
 
 const cart = {
     deliveryPrice: 120,
     deliveryMethod: 'post',
-    positions: [
-        {id: 1, title: 'Шорты 2', price: 1200, amount: 2, sum: 0},
-        {id: 3, title: 'Шорты 3', price: 1200, amount: 3, sum: 0},
-        {id: 4, title: 'Шорты 4', price: 1200, amount: 1, sum: 0},
-    ]
+    positions: {
+        1: {id: 1, title: 'Шорты 2', price: 1200, amount: 2, sum: 0},
+        3: {id: 3, title: 'Шорты 3', price: 1200, amount: 3, sum: 0},
+        4: {id: 4, title: 'Шорты 4', price: 1200, amount: 1, sum: 0},
+    }
+}
+
+const arrayFromObject = (obj) => {
+    return Object.keys(obj).map(key => obj[key])
 }
 
 const generateCartTable = (cart) => {
-    const priceTd = document.createElement('td')
-    priceTd.innerHTML = '100'
-
-    const trs = cart.positions.map(position => {
+    const trs = arrayFromObject(cart.positions).map(position => {
         position.sum = position.price * position.amount
 
         return `
-        <tr class="cart-position">
+        <tr class="cart-position" id="${position.id}">
             <td>${position.title}</td>
             <td class="price">${position.price}</td>
             <td>
@@ -32,14 +39,40 @@ const generateCartTable = (cart) => {
         `
     })
 
+    const totalSum = arrayFromObject(cart.positions).reduce((sum, position) => sum + position.sum, 0)
+
     const totalTr = `
         <tr>
             <td colspan="3"></td>
-            <td class="total">0</td>
+            <td class="total">${totalSum}</td>
         </tr>`
 
-    return `<table>${trs}${totalTr}</table>`
+    const table = document.createElement('table')
+    table.innerHTML = `${trs}${totalTr}`
+
+    Array.from(table.querySelectorAll('button')).forEach(button => {
+        const id = button.closest('.cart-position').id
+        if (!button.VasyaWasHere) {
+            button.addEventListener('click', () => button.className === 'plus-button'
+                ? increment(cart, id)
+                : decrement(cart, id)
+            )
+
+            button.VasyaWasHere = true
+        }
+    })
+
+    return table
 }
+
+const render = (cart) => {
+    const cartDiv = document.getElementById('cart')
+    const table = cartDiv.querySelector('table')
+    table && cartDiv.removeChild(table)
+    cartDiv.appendChild(generateCartTable(cart))
+}
+
+render(cart)
 
 /*
 
