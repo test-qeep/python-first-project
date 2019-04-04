@@ -24,8 +24,13 @@
                             <small class="text-muted">Нет в наличии</small>
                         {% endif %}
                     </p>
+                <button class="add-button" data-id="{{ product.id }}">Добавить в корзину</button>
                 </div>
             </div>
         {% endfor %}
     </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="/static/product.js"></script>
 {% endblock %}
