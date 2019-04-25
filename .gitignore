@@ -3,3 +3,4 @@
 Vagrantfile
 ubuntu*.log
 !.idea/dataSources.xml
+__pycache__
