@@ -1,14 +1,20 @@
 const increment = (cart, idPosition) => {
     cart.positions[idPosition].amount += 1
+    localStorage.setItem('cart',
+        JSON.stringify(cart))
     render(cart)
 }
 const decrement = (cart, idPosition) => {
-    cart.positions[idPosition].amount && (cart.positions[idPosition].amount -= 1)
+    cart.positions[idPosition].amount &&
+    (cart.positions[idPosition].amount -= 1)
+    localStorage.setItem('cart',
+        JSON.stringify(cart))
     render(cart)
 }
-
-const cart = JSON.parse(localStorage.getItem('cart'))
+const cart =
+    JSON.parse(localStorage.getItem('cart'))
 console.log(cart)
+
 // const cart = {
 //     deliveryPrice: 120,
 //     deliveryMethod: 'post',
@@ -80,7 +86,8 @@ const generateCartTable = (cart) => {
 }
 
 const render = (cart) => {
-    const cartDiv = document.getElementById('cart')
+    const cartDiv =
+        document.getElementById('cart')
     const table = cartDiv.querySelector('table')
     table && cartDiv.removeChild(table)
     cartDiv.appendChild(generateCartTable(cart))

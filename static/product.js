@@ -1,14 +1,28 @@
 const addToBasket = (productId) => {
-    const cart = JSON.parse(localStorage.getItem('cart'))
+    let cart =
+        JSON.parse(localStorage.getItem('cart'))
+    if (cart === null) {
+       cart = {
+           positions: {},
+       }
+    }
+
+    // cart.positions[productId] =
+    //     getProductFromServer(productId)
+
     cart.positions = {
         ...cart.positions,
-        [productId]: getProductFromServer(productId),
+        [productId]:
+            getProductFromServer(productId),
     }
-    localStorage.setItem('cart', JSON.stringify(cart))
+
+    console.log(cart)
+    localStorage.setItem('cart',
+        JSON.stringify(cart))
 }
 
 const getProductFromServer = (productId) => {
-    return {id: productId, title: 'Шорты ' + productId, price: 1200, amount: 1, sum: 0}
+    return products[productId]
 }
 
 const buttons = document.getElementsByClassName('add-button')
