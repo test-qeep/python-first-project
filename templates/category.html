@@ -3,9 +3,6 @@
 {% block title %}{{ category.title }}{% endblock %}
 
 {% block content %}
-    <script>
-    const products = []
-    </script>
     <div class="card-deck">
         {% for product in products %}
             <div class="card" data-product="{{ product|tojson|forceescape }}">
@@ -27,16 +24,7 @@
                             <small class="text-muted">Нет в наличии</small>
                         {% endif %}
                     </p>
-                <script type="text/javascript">
-                    products[{{ product.id }}] = {
-                        id: {{ product.id }},
-                        title: '{{ product.title }}',
-                        sum: 0,
-                        amount: 1,
-                        price: {{ product.price }},
-                    }
-                </script>
-                <button class="add-button" data-id="{{ product.id }}">Добавить в корзину</button>
+                <button class="add-button" data-product="{{ product|tojson|forceescape }}">Добавить в корзину</button>
                 </div>
             </div>
         {% endfor %}
